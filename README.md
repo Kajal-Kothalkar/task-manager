@@ -1,73 +1,147 @@
-# React + TypeScript + Vite
+🗂 Mini Task Manager Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern task management dashboard built using React + TypeScript (TSX) with proper separation of server state and client state using:
 
-Currently, two official plugins are available:
+⚛️ React + TypeScript
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🎨 Tailwind CSS
 
-## React Compiler
+🔄 TanStack Query
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+🐻 Zustand
 
-## Expanding the ESLint configuration
+This project demonstrates best practices for managing API data and global UI state separately.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+🚀 Live API Used
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Tasks are fetched from:
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+https://jsonplaceholder.typicode.com/todos?_limit=15
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+API provided by JSONPlaceholder
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+🧠 Core Concept
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+This project clearly demonstrates the difference between:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+🔹 Server State (TanStack Query)
+
+Fetched from API
+
+Cached
+
+Refetched when invalidated
+
+Managed using useQuery & useMutation
+
+🔹 Client / Global State (Zustand)
+
+UI filter state
+
+Instant updates
+
+No API refetch on filter change
+
+📦 Features Implemented
+1️⃣ Task List (TanStack Query)
+
+Fetch tasks using useQuery
+
+Display:
+
+Task Title
+
+Completed / Pending Status
+
+Loading State
+
+Error State
+
+Empty State
+
+API data is NOT stored in Zustand
+
+2️⃣ Filter System (Zustand)
+
+Global filter store:
+
+type FilterType = "all" | "completed" | "pending";
+
+interface TaskFilterState {
+  filter: FilterType;
+  setFilter: (value: FilterType) => void;
+}
+Filter Options:
+
+All
+
+Completed
+
+Pending
+
+Important Behavior:
+
+Instant UI update
+
+No API refetch
+
+Filtering handled client-side
+
+3️⃣ Dashboard Stats Section
+
+Three stat cards:
+
+📊 Total Tasks
+
+✅ Completed Tasks
+
+⏳ Pending Tasks
+
+Stats are:
+
+Derived from fetched data
+
+Properly calculated
+
+Automatically recomputed when filter changes
+
+4️⃣ Add New Task (useMutation)
+
+Input field for task title
+
+Add Task button
+
+Simulated API call
+
+After success:
+
+Query invalidated
+
+Task list refetched
+
+🖥 UI Structure
+Layout Includes:
+
+Static Sidebar
+
+Main Dashboard Area
+
+Stats Section (Top)
+
+Filter Buttons
+
+Task List
+
+Add Task Form
+
+Tailwind UI Expectations:
+
+Clean spacing
+
+Card-based layout
+
+Hover effects
+
+Proper alignment
+
+Responsive design
