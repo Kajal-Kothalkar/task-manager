@@ -14,12 +14,6 @@ This project demonstrates best practices for managing API data and global UI sta
 
 🚀 Live API Used
 
-Tasks are fetched from:
-
-https://jsonplaceholder.typicode.com/todos?_limit=15
-
-API provided by JSONPlaceholder
-
 🧠 Core Concept
 
 This project clearly demonstrates the difference between:
